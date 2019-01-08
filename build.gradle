@@ -1,0 +1,39 @@
+//应用插件
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+apply plugin: 'org.unbroken-dome.test-sets'
+apply plugin: 'war'
+
+group 'com.zp'
+version '1.0-SNAPSHOT'
+
+//jdk版本
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+//构建脚本
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath(
+                'org.springframework.boot:spring-boot-gradle-plugin:1.4.0.RELEASE',
+                'org.unbroken-dome.gradle-plugins:gradle-testsets-plugin:1.0.2'
+        )
+    }
+}
+//使用maven仓库
+repositories {
+    mavenCentral()
+}
+//具体依赖
+dependencies {
+    compile(
+            'org.springframework.boot:spring-boot-devtools',
+            'org.springframework.boot:spring-boot-starter-actuator',
+            'org.springframework.boot:spring-boot-starter-web'
+    )
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
