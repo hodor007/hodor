@@ -12,10 +12,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  *
  * @author zhengpeng
  */
-//@ComponentScan("com.zp")
+//@ComponentScan(basePackages = { "com.zp.spring" })
 @SpringBootApplication
 public class Application {
-    public static void main(String[] args){
+    public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 }
