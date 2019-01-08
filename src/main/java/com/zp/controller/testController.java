@@ -19,7 +19,7 @@ public class testController {
 
     @RequestMapping(value = "/world",method = RequestMethod.GET)
     public String testHello() {
-        return "helloWord";
+        return "helloWorld";
     }
 
 }
