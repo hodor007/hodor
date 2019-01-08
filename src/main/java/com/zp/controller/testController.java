@@ -19,11 +19,7 @@ public class testController {
 
     @RequestMapping(value = "/world",method = RequestMethod.GET)
     public String testHello() {
-        return "helloWorld";
+        return "helloWord";
     }
 
-    @RequestMapping(value = "/haha",method = RequestMethod.GET)
-    public String testHaHa() {
-        return "haha";
-    }
 }
