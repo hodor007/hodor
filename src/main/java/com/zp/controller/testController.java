@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.zp.spring.jsonComponent.entity.User;
 
 import javafx.scene.paint.Color;
 
@@ -27,7 +28,8 @@ public class testController {
     private ObjectMapper objectMapper;
 
     @RequestMapping(value = "/world",method = RequestMethod.GET)
-    public String testHello() throws JsonProcessingException {
+    public String testHello(User user) throws JsonProcessingException {
+        System.out.println(user);
         return   objectMapper.writeValueAsString(Color.ALICEBLUE);
     }
 
