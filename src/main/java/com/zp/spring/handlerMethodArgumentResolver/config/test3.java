@@ -9,14 +9,5 @@ package com.zp.spring.handlerMethodArgumentResolver.config;
  *
  * @author zhengpeng
  */
-public class test1 {
-    private int age;
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
+public class test3 {
 }
