@@ -9,14 +9,5 @@ package com.zp.spring.handlerMethodArgumentResolver.config;
  *
  * @author zhengpeng
  */
-public class test1Class {
-    private String name;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
+public class test2Class {
 }
