@@ -14,6 +14,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.alibaba.fastjson.JSON;
+
 /**
  * Description:日志类（aop获取的日志）
  * Date: 2019-02-22
@@ -21,12 +23,21 @@ import org.springframework.web.context.request.ServletRequestAttributes;
  * @author zhengpeng
  */
 @Component
-@Scope("request")
+@Scope("request")  //request表示该针对每一次HTTP请求都会产生一个新的bean，同时该bean仅在当前HTTP request内有效
 public class RequestLogs implements InitializingBean {
 
+    private boolean ifDebug;
     private String requestUri;
     private String parameters;
     private Map<String, Method> dependentMethod;
+
+    public boolean isIfDebug() {
+        return ifDebug;
+    }
+
+    public void setIfDebug(boolean ifDebug) {
+        this.ifDebug = ifDebug;
+    }
 
     public String getRequestUri() {
         return requestUri;
@@ -34,6 +45,22 @@ public class RequestLogs implements InitializingBean {
 
     public void setRequestUri(String requestUri) {
         this.requestUri = requestUri;
+    }
+
+    public String getParameters() {
+        return parameters;
+    }
+
+    public void setParameters(String parameters) {
+        this.parameters = parameters;
+    }
+
+    public Map<String, Method> getDependentMethod() {
+        return dependentMethod;
+    }
+
+    public void setDependentMethod(Map<String, Method> dependentMethod) {
+        this.dependentMethod = dependentMethod;
     }
 
     @Override
@@ -45,7 +72,7 @@ public class RequestLogs implements InitializingBean {
         dependentMethod = new LinkedHashMap();
     }
 
-    private class Method{
+     static class Method{
         private Object request;
         private Object response;
 

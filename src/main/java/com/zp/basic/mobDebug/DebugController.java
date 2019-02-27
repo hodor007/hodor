@@ -6,6 +6,7 @@ package com.zp.basic.mobDebug;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,21 +19,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DebugController {
 
+    @Autowired
+    DebugService1 debugService1;
+
     @RequestMapping("/debug/**")
-    public String debug(HttpServletRequest request, HttpServletResponse response){
-            String uri = request.getRequestURI();
+    public String debug(HttpServletRequest request, HttpServletResponse response) {
+        RequestLogs requestLogs = LogSoldier.getRequestLogs();
+        String uri = requestLogs.getRequestUri();
+        requestLogs.setIfDebug(true);
         String realPath = uri.replaceFirst(".*debug", "");
         try {
             request.getRequestDispatcher(realPath).forward(request, response);
         } catch (Exception e) {
 
         }
-        return  realPath;
+        return realPath;
     }
 
     @RequestMapping("/testDebug")
-    public String testDebug(int id){
-
-        return "";
+    public String testDebug(int age) {
+        debugService1.test(new StudentEntity("Tony",age));
+        return "success";
     }
 }
