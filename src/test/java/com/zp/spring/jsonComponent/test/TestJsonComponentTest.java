@@ -3,16 +3,12 @@
  */
 package com.zp.spring.jsonComponent.test;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.json.JsonTest;
-import org.springframework.test.context.junit4.SpringRunner;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import javafx.scene.paint.Color;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.json.JsonTest;
 
 /**
  * Description:
@@ -21,7 +17,7 @@ import javafx.scene.paint.Color;
  * @author zhengpeng
  */
 @JsonTest
-@RunWith(SpringRunner.class)
+//@RunWith(SpringRunner.class)
 public class TestJsonComponentTest {
     @Autowired
     private ObjectMapper objectMapper;

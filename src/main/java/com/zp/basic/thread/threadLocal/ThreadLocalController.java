@@ -16,11 +16,12 @@ import javax.servlet.http.HttpServletRequest;
 public class ThreadLocalController {
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
-    public String testHello(HttpServletRequest request){
+    public String testHello(HttpServletRequest request) {
+        ThreadLocalTest.setThreadLocal("好的？");
         String result = ThreadLocalTest.getThreadLocal();
-        ThreadLocalTest.setThreadLocal("好的");
-        result = ThreadLocalTest.getThreadLocal();
-        return result;
+        ThreadLocalTest1.setThreadLocal("不好");
+        String result1 = ThreadLocalTest1.getThreadLocal();
+        return result + "==" + result1;
     }
 
 }
