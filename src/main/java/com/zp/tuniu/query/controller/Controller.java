@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.zp.tuniu.query.QueryReq;
 import com.zp.tuniu.query.QueryResp;
+import com.zp.tuniu.query.another.QueryAnoReq;
+import com.zp.tuniu.query.another.QueryAnoResp;
 import com.zp.tuniu.query.execute.IService;
 
 /**
@@ -30,4 +32,8 @@ public class Controller {
         return iService.queryResource(new QueryReq());
     }
 
+    @RequestMapping("/execute1")
+    public QueryAnoResp execute1() {
+        return iService.queryResource(new QueryAnoReq("name"));
+    }
 }

@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 import com.zp.tuniu.query.IQueryService;
 import com.zp.tuniu.query.QueryReq;
 import com.zp.tuniu.query.QueryResp;
+import com.zp.tuniu.query.another.IAnoQueryService;
+import com.zp.tuniu.query.another.QueryAnoReq;
+import com.zp.tuniu.query.another.QueryAnoResp;
 
 /**
  * TODO: description
@@ -24,7 +27,8 @@ import com.zp.tuniu.query.QueryResp;
 public class IServiceImpl implements IService {
 
     @Resource
-    private List<IQueryService> queryServices;
+//    private List<IQueryService> queryServices;
+    private List<IAnoQueryService> anoQueryServices;
 
     @Autowired
     private ProcedureExecutor procedureExecutor;
@@ -32,6 +36,12 @@ public class IServiceImpl implements IService {
     @Override
     public QueryResp queryResource(QueryReq req) {
         QueryResp resp = new QueryResp();
-        return procedureExecutor.execute(queryServices, req, resp);
+        return procedureExecutor.execute(anoQueryServices, req, resp);
+    }
+
+    @Override
+    public QueryAnoResp queryResource(QueryAnoReq req) {
+        QueryAnoResp resp = new QueryAnoResp();
+        return procedureExecutor.execute(anoQueryServices, req, resp);
     }
 }

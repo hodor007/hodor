@@ -10,4 +10,21 @@ package com.zp.tuniu.query.vo;
  * @author zhengpeng
  */
 public class QueryHotelReq {
+
+    private String name;
+
+    public QueryHotelReq() {
+    }
+
+    public QueryHotelReq(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

@@ -5,6 +5,8 @@ package com.zp.tuniu.query.execute;
 
 import com.zp.tuniu.query.QueryReq;
 import com.zp.tuniu.query.QueryResp;
+import com.zp.tuniu.query.another.QueryAnoReq;
+import com.zp.tuniu.query.another.QueryAnoResp;
 
 /**
  * TODO: description
@@ -15,5 +17,7 @@ import com.zp.tuniu.query.QueryResp;
 public interface IService {
 
     QueryResp queryResource(QueryReq req);
+
+    QueryAnoResp queryResource(QueryAnoReq req);
 
 }
