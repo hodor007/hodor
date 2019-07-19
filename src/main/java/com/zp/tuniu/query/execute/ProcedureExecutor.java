@@ -27,11 +27,14 @@ public class ProcedureExecutor {
     public <OriginalRequest, OriginalResponse> OriginalResponse execute(List<? extends IProcedure> procedures,
                                                                         OriginalRequest request,
                                                                         OriginalResponse response) {
-        procedures.forEach(procedure -> threadPoolTaskExecutor.submit(() -> {
-            Object req = procedure.requestDecorator().decorator(request);
-            Object resp = procedure.handle(req);
-            procedure.responseDecorator().decorator(resp, response);
-        }));
+        procedures.forEach(procedure -> {
+            threadPoolTaskExecutor.submit(() -> {
+//                Object req = procedure.requestDecorator().decorator(request);
+//                Object resp = procedure.handle(req);
+//                procedure.responseDecorator().decorator(resp, response);
+                procedure.responseDecorator().decorator(procedure.handle(procedure.requestDecorator().decorator(request)), response);
+            });
+        });
 
         return response;
     }

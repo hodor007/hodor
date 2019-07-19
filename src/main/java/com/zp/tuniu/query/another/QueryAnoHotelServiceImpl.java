@@ -31,6 +31,6 @@ public class QueryAnoHotelServiceImpl implements IAnoQueryService<QueryHotelReq,
 
     @Override
     public ResponseDecorator<QueryHotelResp, QueryAnoResp> responseDecorator() {
-        return (queryHotelResp, queryAnoResp) -> queryAnoResp.setHotelName("hotel == "+queryHotelResp.getName());
+        return (queryHotelResp, queryAnoResp) -> queryAnoResp.setHotelName("hotel == " + queryHotelResp.getName());
     }
 }
