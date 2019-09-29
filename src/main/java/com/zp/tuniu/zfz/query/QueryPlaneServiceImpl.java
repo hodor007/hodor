@@ -1,14 +1,14 @@
 /**
  * Copyright (C) 2006-2019 Tuniu All rights reserved
  */
-package com.zp.tuniu.query;
+package com.zp.tuniu.zfz.query;
 
 import org.springframework.stereotype.Service;
 
-import com.zp.tuniu.RequestDecorator;
-import com.zp.tuniu.ResponseDecorator;
-import com.zp.tuniu.query.vo.QueryPlaneReq;
-import com.zp.tuniu.query.vo.QueryPlaneResp;
+import com.zp.tuniu.zfz.RequestDecorator;
+import com.zp.tuniu.zfz.ResponseDecorator;
+import com.zp.tuniu.zfz.query.vo.QueryPlaneReq;
+import com.zp.tuniu.zfz.query.vo.QueryPlaneResp;
 
 /**
  * TODO: description

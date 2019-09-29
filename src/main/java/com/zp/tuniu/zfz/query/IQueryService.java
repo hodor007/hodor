@@ -1,9 +1,9 @@
 /**
  * Copyright (C) 2006-2019 Tuniu All rights reserved
  */
-package com.zp.tuniu.query;
+package com.zp.tuniu.zfz.query;
 
-import com.zp.tuniu.IProcedure;
+import com.zp.tuniu.zfz.IProcedure;
 
 /**
  * TODO: description

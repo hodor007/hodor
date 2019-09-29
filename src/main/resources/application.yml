@@ -1,4 +1,6 @@
 # You can change the default http port
 server:
-  port: 8080
+  port: 8082
   contextPath: /hodor   # 配置后bootRun，访问时要http://localhost:8080/dist
+
+zookeeper: zk01.tuniu-sit.org:2181

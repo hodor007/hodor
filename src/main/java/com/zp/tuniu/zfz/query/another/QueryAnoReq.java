@@ -1,7 +1,7 @@
 /**
  * Copyright (C) 2006-2019 Tuniu All rights reserved
  */
-package com.zp.tuniu.query.vo;
+package com.zp.tuniu.zfz.query.another;
 
 /**
  * TODO: description
@@ -9,14 +9,11 @@ package com.zp.tuniu.query.vo;
  *
  * @author zhengpeng
  */
-public class QueryHotelReq {
+public class QueryAnoReq {
 
     private String name;
 
-    public QueryHotelReq() {
-    }
-
-    public QueryHotelReq(String name) {
+    public QueryAnoReq(String name) {
         this.name = name;
     }
 
@@ -27,4 +24,5 @@ public class QueryHotelReq {
     public void setName(String name) {
         this.name = name;
     }
+
 }

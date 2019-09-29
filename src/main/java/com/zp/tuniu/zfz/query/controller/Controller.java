@@ -1,17 +1,17 @@
 /**
  * Copyright (C) 2006-2019 Tuniu All rights reserved
  */
-package com.zp.tuniu.query.controller;
+package com.zp.tuniu.zfz.query.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.zp.tuniu.query.QueryReq;
-import com.zp.tuniu.query.QueryResp;
-import com.zp.tuniu.query.another.QueryAnoReq;
-import com.zp.tuniu.query.another.QueryAnoResp;
-import com.zp.tuniu.query.execute.IService;
+import com.zp.tuniu.zfz.query.QueryReq;
+import com.zp.tuniu.zfz.query.QueryResp;
+import com.zp.tuniu.zfz.query.another.QueryAnoReq;
+import com.zp.tuniu.zfz.query.another.QueryAnoResp;
+import com.zp.tuniu.zfz.query.execute.IService;
 
 /**
  * TODO: description

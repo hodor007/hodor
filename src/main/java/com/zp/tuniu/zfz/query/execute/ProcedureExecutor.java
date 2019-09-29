@@ -1,7 +1,7 @@
 /**
  * Copyright (C) 2006-2019 Tuniu All rights reserved
  */
-package com.zp.tuniu.query.execute;
+package com.zp.tuniu.zfz.query.execute;
 
 import javax.annotation.Resource;
 
@@ -10,7 +10,7 @@ import java.util.List;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Component;
 
-import com.zp.tuniu.IProcedure;
+import com.zp.tuniu.zfz.IProcedure;
 
 /**
  * TODO: description
@@ -27,14 +27,12 @@ public class ProcedureExecutor {
     public <OriginalRequest, OriginalResponse> OriginalResponse execute(List<? extends IProcedure> procedures,
                                                                         OriginalRequest request,
                                                                         OriginalResponse response) {
-        procedures.forEach(procedure -> {
-            threadPoolTaskExecutor.submit(() -> {
+        procedures.forEach(procedure -> threadPoolTaskExecutor.submit(() -> {
 //                Object req = procedure.requestDecorator().decorator(request);
 //                Object resp = procedure.handle(req);
 //                procedure.responseDecorator().decorator(resp, response);
-                procedure.responseDecorator().decorator(procedure.handle(procedure.requestDecorator().decorator(request)), response);
-            });
-        });
+            procedure.responseDecorator().decorator(procedure.handle(procedure.requestDecorator().decorator(request)), response);
+        }));
 
         return response;
     }

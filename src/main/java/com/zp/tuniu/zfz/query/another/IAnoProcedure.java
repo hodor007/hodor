@@ -1,10 +1,10 @@
 /**
  * Copyright (C) 2006-2019 Tuniu All rights reserved
  */
-package com.zp.tuniu.query.another;
+package com.zp.tuniu.zfz.query.another;
 
-import com.zp.tuniu.RequestDecorator;
-import com.zp.tuniu.ResponseDecorator;
+import com.zp.tuniu.zfz.RequestDecorator;
+import com.zp.tuniu.zfz.ResponseDecorator;
 
 /**
  * TODO: description

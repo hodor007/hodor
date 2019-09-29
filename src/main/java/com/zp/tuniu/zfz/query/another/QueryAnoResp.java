@@ -1,7 +1,7 @@
 /**
  * Copyright (C) 2006-2019 Tuniu All rights reserved
  */
-package com.zp.tuniu.query.another;
+package com.zp.tuniu.zfz.query.another;
 
 /**
  * TODO: description

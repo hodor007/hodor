@@ -1,7 +1,7 @@
 /**
  * Copyright (C) 2006-2019 Tuniu All rights reserved
  */
-package com.zp.tuniu.query.vo;
+package com.zp.tuniu.zfz.query.vo;
 
 /**
  * TODO: description
@@ -9,11 +9,14 @@ package com.zp.tuniu.query.vo;
  *
  * @author zhengpeng
  */
-public class QueryPlaneResp {
+public class QueryPlaneReq {
 
     private String name;
 
-    public QueryPlaneResp(String name) {
+    public QueryPlaneReq() {
+    }
+
+    public QueryPlaneReq(String name) {
         this.name = name;
     }
 
@@ -24,5 +27,4 @@ public class QueryPlaneResp {
     public void setName(String name) {
         this.name = name;
     }
-
 }

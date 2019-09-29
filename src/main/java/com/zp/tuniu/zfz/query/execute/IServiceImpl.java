@@ -1,21 +1,18 @@
 /**
  * Copyright (C) 2006-2019 Tuniu All rights reserved
  */
-package com.zp.tuniu.query.execute;
-
-import javax.annotation.Resource;
+package com.zp.tuniu.zfz.query.execute;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.zp.tuniu.query.IQueryService;
-import com.zp.tuniu.query.QueryReq;
-import com.zp.tuniu.query.QueryResp;
-import com.zp.tuniu.query.another.IAnoQueryService;
-import com.zp.tuniu.query.another.QueryAnoReq;
-import com.zp.tuniu.query.another.QueryAnoResp;
+import com.zp.tuniu.zfz.query.QueryReq;
+import com.zp.tuniu.zfz.query.QueryResp;
+import com.zp.tuniu.zfz.query.another.IAnoQueryService;
+import com.zp.tuniu.zfz.query.another.QueryAnoReq;
+import com.zp.tuniu.zfz.query.another.QueryAnoResp;
 
 /**
  * TODO: description
@@ -26,7 +23,7 @@ import com.zp.tuniu.query.another.QueryAnoResp;
 @Service
 public class IServiceImpl implements IService {
 
-    @Resource
+    @Autowired
 //    private List<IQueryService> queryServices;
     private List<IAnoQueryService> anoQueryServices;
 
