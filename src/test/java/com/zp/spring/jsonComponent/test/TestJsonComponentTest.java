@@ -16,15 +16,15 @@ import org.springframework.boot.test.autoconfigure.json.JsonTest;
  *
  * @author zhengpeng
  */
-@JsonTest
-//@RunWith(SpringRunner.class)
-public class TestJsonComponentTest {
-    @Autowired
-    private ObjectMapper objectMapper;
-
-    @Test
-    public void testSerialization() throws JsonProcessingException {
-        String json = objectMapper.writeValueAsString(Color.ALICEBLUE);
-        System.out.println(json);
-    }
-}
+//@JsonTest
+////@RunWith(SpringRunner.class)
+//public class TestJsonComponentTest {
+//    @Autowired
+//    private ObjectMapper objectMapper;
+//
+//    @Test
+//    public void testSerialization() throws JsonProcessingException {
+//        String json = objectMapper.writeValueAsString(Color.ALICEBLUE);
+//        System.out.println(json);
+//    }
+//}

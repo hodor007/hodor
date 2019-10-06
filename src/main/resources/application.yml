@@ -3,4 +3,5 @@ server:
   port: 8082
   contextPath: /hodor   # 配置后bootRun，访问时要http://localhost:8080/dist
 
-zookeeper: zk01.tuniu-sit.org:2181
+zkHosts: 127.0.0.1:2181
+namespace: hodor

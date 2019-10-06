@@ -4,6 +4,7 @@
 package com.zp.thrift;
 
 import org.apache.thrift.TException;
+import org.springframework.stereotype.Service;
 
 /**
  * TODO: description
@@ -11,6 +12,7 @@ import org.apache.thrift.TException;
  *
  * @author zhengpeng
  */
+@Service
 public class HelloWorldServiceImpl implements HelloWorldService.Iface {
     @Override
     public String sayHello(String username) throws TException {
