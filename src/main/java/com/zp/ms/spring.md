@@ -17,7 +17,11 @@ spring  https://blog.csdn.net/a745233700/article/details/80959716
     （5）global-session：全局作用域，global-session和Portlet应用相关。当你的应用部署在Portlet容器中工作时，它包含很多portlet。如果你想要声明让所有的portlet共用全局的存储变量的话，那么这全局变量需要存储在global-session中。全局作用域与Servlet中的session作用域效果相同。
     
     生命周期 https://www.cnblogs.com/wgl-gdyuan/p/9911653.html
-     
+    
+spring mvc
+    
+spring boot 
+     好处：https://blog.csdn.net/qq_32595453/article/details/81141643
     
         
     
