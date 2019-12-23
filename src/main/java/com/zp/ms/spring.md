@@ -18,6 +18,8 @@ spring  https://blog.csdn.net/a745233700/article/details/80959716
     
     生命周期 https://www.cnblogs.com/wgl-gdyuan/p/9911653.html
     
+    @Resource的作用相当于@Autowired，只不过@Autowired按byType自动注入，而@Resource默认按 byName自动注入罢了。
+    
 spring mvc
     
 spring boot 
