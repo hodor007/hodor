@@ -16,14 +16,18 @@ spring  https://blog.csdn.net/a745233700/article/details/80959716
     （4）session：与request范围类似，确保每个session中有一个bean的实例，在session过期后，bean会随之失效。
     （5）global-session：全局作用域，global-session和Portlet应用相关。当你的应用部署在Portlet容器中工作时，它包含很多portlet。如果你想要声明让所有的portlet共用全局的存储变量的话，那么这全局变量需要存储在global-session中。全局作用域与Servlet中的session作用域效果相同。
     
-    生命周期 https://www.cnblogs.com/wgl-gdyuan/p/9911653.html
+    生命周期 https://www.cnblogs.com/javazhiyin/p/10905294.html
+    spring事物 https://blog.csdn.net/zajiayouzai/article/details/80190524
     
     @Resource的作用相当于@Autowired，只不过@Autowired按byType自动注入，而@Resource默认按 byName自动注入罢了。
     
-spring mvc
+    spring mvc      https://blog.csdn.net/a745233700/article/details/80963758
     
-spring boot 
+    
+    spring boot 
      好处：https://blog.csdn.net/qq_32595453/article/details/81141643
+     自动装配：https://blog.csdn.net/u014745069/article/details/83820511
+     一定要记得XxxxProperties类的含义是：封装配置文件中相关属性；XxxxAutoConfiguration类的含义是：自动配置类，目的是给容器中添加组件。
     
         
     
