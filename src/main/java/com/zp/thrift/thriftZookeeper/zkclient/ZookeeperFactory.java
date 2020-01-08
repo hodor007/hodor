@@ -71,14 +71,15 @@ public class ZookeeperFactory implements FactoryBean<CuratorFramework>, Closeabl
 
     @Override
     public CuratorFramework getObject(){
-        if (singleton) {
-            if (zkClient == null) {
-                zkClient = create();
-                zkClient.start();
-            }
-            return zkClient;
-        }
-        return create();
+//        if (singleton) {
+//            if (zkClient == null) {
+//                zkClient = create();
+//                zkClient.start();
+//            }
+//            return zkClient;
+//        }
+//        return create();
+        return null;
     }
 
     @Override

@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/hodor.iml" filepath="$PROJECT_DIR$/hodor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hodor.main.iml" filepath="$PROJECT_DIR$/.idea/modules/hodor.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/hodor.test.iml" filepath="$PROJECT_DIR$/.idea/modules/hodor.test.iml" />
     </modules>
   </component>
 </project>

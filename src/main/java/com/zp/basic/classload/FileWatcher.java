@@ -42,35 +42,35 @@ public class FileWatcher implements ApplicationContextAware {
 
     @PostConstruct
     public void init() {
-        try {
-            watchService = FileSystems.getDefault().newWatchService();
-            Path path = Paths.get(watchFile);
-            // 单层文件夹下
-//            path.register(watchService, StandardWatchEventKinds.ENTRY_CREATE,
-//                    StandardWatchEventKinds.ENTRY_MODIFY,
-//                    StandardWatchEventKinds.ENTRY_DELETE);
-            // 多层文件夹下
-            Files.walkFileTree(path, new SimpleFileVisitor<Path>() {
-                @Override
-                public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs)
-                        throws IOException {
-                    dir.register(watchService, StandardWatchEventKinds.ENTRY_CREATE, StandardWatchEventKinds.ENTRY_MODIFY, StandardWatchEventKinds.ENTRY_DELETE);
-                    return FileVisitResult.CONTINUE;
-                }
-            });
-        } catch (IOException e) {
-            LOGGER.warn("读取修改的文件失败", e);
-        }
-        new Thread(new WatchThread()).start();
-        /**注册关闭钩子*/
-        Thread hook = new Thread(() -> {
-            try {
-                watchService.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-        Runtime.getRuntime().addShutdownHook(hook);
+//        try {
+//            watchService = FileSystems.getDefault().newWatchService();
+//            Path path = Paths.get(watchFile);
+//            // 单层文件夹下
+////            path.register(watchService, StandardWatchEventKinds.ENTRY_CREATE,
+////                    StandardWatchEventKinds.ENTRY_MODIFY,
+////                    StandardWatchEventKinds.ENTRY_DELETE);
+//            // 多层文件夹下
+//            Files.walkFileTree(path, new SimpleFileVisitor<Path>() {
+//                @Override
+//                public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs)
+//                        throws IOException {
+//                    dir.register(watchService, StandardWatchEventKinds.ENTRY_CREATE, StandardWatchEventKinds.ENTRY_MODIFY, StandardWatchEventKinds.ENTRY_DELETE);
+//                    return FileVisitResult.CONTINUE;
+//                }
+//            });
+//        } catch (IOException e) {
+//            LOGGER.warn("读取修改的文件失败", e);
+//        }
+//        new Thread(new WatchThread()).start();
+//        /**注册关闭钩子*/
+//        Thread hook = new Thread(() -> {
+//            try {
+//                watchService.close();
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
+//        });
+//        Runtime.getRuntime().addShutdownHook(hook);
 
     }
 

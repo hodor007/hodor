@@ -84,13 +84,13 @@ public class ThriftServerAddressProviderZookeeper implements ThriftServerAddress
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        zkClient = zookeeperFactory.getObject();
-        // 如果zk尚未启动,则启动
-        if (zkClient.getState() == CuratorFrameworkState.LATENT) {
-            zkClient.start();
-        }
-        buildPathChildrenCache(zkClient, getServicePath(), true);
-        cachedPath.start(PathChildrenCache.StartMode.POST_INITIALIZED_EVENT);
+//        zkClient = zookeeperFactory.getObject();
+//        // 如果zk尚未启动,则启动
+//        if (zkClient.getState() == CuratorFrameworkState.LATENT) {
+//            zkClient.start();
+//        }
+//        buildPathChildrenCache(zkClient, getServicePath(), true);
+//        cachedPath.start(PathChildrenCache.StartMode.POST_INITIALIZED_EVENT);
     }
 
     private String getServicePath() {

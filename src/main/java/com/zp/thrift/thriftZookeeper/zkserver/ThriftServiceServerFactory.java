@@ -85,56 +85,56 @@ public class ThriftServiceServerFactory implements InitializingBean, Closeable {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        service = helloWorldService;
-        if (thriftServerIpResolve == null) {
-            thriftServerIpResolve = new ThriftServerIpLocalNetworkResolve();
-        }
-        String serverIP = thriftServerIpResolve.getServerIp(publicIpOnly);
-        if (StringUtils.isEmpty(serverIP)) {
-            throw new InvalidParamException("cant find server ip...");
-        }
-
-        String hostname = serverIP + ":" + port + ":" + weight;
-        Class<?> serviceClass = service.getClass();
-        // 获取实现类接口
-        Class<?>[] interfaces = serviceClass.getInterfaces();
-        if (interfaces.length == 0) {
-            throw new IllegalClassFormatException("service-class should implements Iface");
-        }
-        // reflect,load "Processor";
-        TProcessor processor = null;
-        String serviceName = null;
-
-        for (Class<?> clazz : interfaces) {
-            String cname = clazz.getSimpleName();
-            if (!cname.equals("Iface")) {
-                continue;
-            }
-            serviceName = clazz.getEnclosingClass().getName();
-            String pname = serviceName + "$Processor";
-            try {
-                ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-                Class<?> pclass = classLoader.loadClass(pname);
-                if (!TProcessor.class.isAssignableFrom(pclass)) {
-                    continue;
-                }
-                Constructor<?> constructor = pclass.getConstructor(clazz);
-                processor = (TProcessor) constructor.newInstance(service);
-                break;
-            } catch (Exception e) {
-                //
-            }
-        }
-        if (processor == null) {
-            throw new IllegalClassFormatException("service-class should implements Iface");
-        }
-        //需要单独的线程,因为serve方法是阻塞的.
-        serverThread = new ServerThread(processor, port);
-        serverThread.start();
-        // 注册服务
-        if (zkUse && thriftServerAddressRegister != null) {
-            thriftServerAddressRegister.register(serviceName, version, hostname);
-        }
+//        service = helloWorldService;
+//        if (thriftServerIpResolve == null) {
+//            thriftServerIpResolve = new ThriftServerIpLocalNetworkResolve();
+//        }
+//        String serverIP = thriftServerIpResolve.getServerIp(publicIpOnly);
+//        if (StringUtils.isEmpty(serverIP)) {
+//            throw new InvalidParamException("cant find server ip...");
+//        }
+//
+//        String hostname = serverIP + ":" + port + ":" + weight;
+//        Class<?> serviceClass = service.getClass();
+//        // 获取实现类接口
+//        Class<?>[] interfaces = serviceClass.getInterfaces();
+//        if (interfaces.length == 0) {
+//            throw new IllegalClassFormatException("service-class should implements Iface");
+//        }
+//        // reflect,load "Processor";
+//        TProcessor processor = null;
+//        String serviceName = null;
+//
+//        for (Class<?> clazz : interfaces) {
+//            String cname = clazz.getSimpleName();
+//            if (!cname.equals("Iface")) {
+//                continue;
+//            }
+//            serviceName = clazz.getEnclosingClass().getName();
+//            String pname = serviceName + "$Processor";
+//            try {
+//                ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+//                Class<?> pclass = classLoader.loadClass(pname);
+//                if (!TProcessor.class.isAssignableFrom(pclass)) {
+//                    continue;
+//                }
+//                Constructor<?> constructor = pclass.getConstructor(clazz);
+//                processor = (TProcessor) constructor.newInstance(service);
+//                break;
+//            } catch (Exception e) {
+//                //
+//            }
+//        }
+//        if (processor == null) {
+//            throw new IllegalClassFormatException("service-class should implements Iface");
+//        }
+//        //需要单独的线程,因为serve方法是阻塞的.
+//        serverThread = new ServerThread(processor, port);
+//        serverThread.start();
+//        // 注册服务
+//        if (zkUse && thriftServerAddressRegister != null) {
+//            thriftServerAddressRegister.register(serviceName, version, hostname);
+//        }
 
     }
 
