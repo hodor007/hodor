@@ -82,12 +82,4 @@ public class Test {
         }
         System.out.println(x + "," +y);
     }
-    Thread thread = new Thread(new Runnable() {
-        @Override
-        public void run() {
-            sayHello();
-            System.out.println("Current thread: " + Thread.currentThread().getName());
-        }
-    });
-
 }
