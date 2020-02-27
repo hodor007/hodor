@@ -1,5 +1,8 @@
 package com.zp.ms;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+
 import java.util.*;
 
 public class Test {
@@ -55,31 +58,8 @@ public class Test {
 ////        System.out.println(myBinarySearch(arr, 40));
 //        System.out.println(query(arr, 0, arr.length - 1, 40));
 
-        Scanner sc = new Scanner(System.in);
-        String input = sc.nextLine();
-        int x=0;
-        int y=0;
-        String[] a = input.split(";");
-        for(int i=0;i < a.length;i++){
-            if( a[i] != null && a[i] != "" && a[i].length()>1 && a[i].length()<4){
-                int value = 0;
-                try{
-                    value =  Integer.valueOf(a[i].substring(1));
-                }catch(Exception e){
-                    continue;
-                }
-
-                if(a[i].charAt(0) == 'A'){
-                    x = x - value;
-                }else if(a[i].charAt(0) == 'D'){
-                    x = x + value;
-                }else if(a[i].charAt(0) == 'W'){
-                    y = y + value;
-                }else if(a[i].charAt(0) == 'S'){
-                    y = y - value;
-                }
-            }
-        }
-        System.out.println(x + "," +y);
+//        System.out.println("在".getBytes().length);
+        JSONObject jsonObject = JSON.parseObject("{ \"singlePrice\": \"200\", \"goodsId\": \"1\"}");
+        System.out.println((int)jsonObject.get("singlePrice"));
     }
 }
