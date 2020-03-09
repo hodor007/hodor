@@ -4,6 +4,7 @@
 package com.zp.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.zp.ymm.dz.redisDz.RedisDz;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,10 +28,19 @@ public class testController {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @RequestMapping(value = "/world",method = RequestMethod.GET)
+    @Autowired
+    private RedisDz redisDz;
+
+    @RequestMapping(value = "/world", method = RequestMethod.GET)
     public String testHello(User user) throws JsonProcessingException {
         System.out.println(user);
-        return   objectMapper.writeValueAsString(Color.ALICEBLUE);
+        return objectMapper.writeValueAsString(Color.ALICEBLUE);
+    }
+
+    @RequestMapping(value = "/testRedisDz", method = RequestMethod.GET)
+    public String testRedisDz() {
+        redisDz.redisDz();
+        return "success";
     }
 
 }

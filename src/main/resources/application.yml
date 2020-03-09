@@ -6,35 +6,44 @@ server:
 zkHosts: 127.0.0.1:2181
 namespace: hodor
 
+# Mybatis 配置
+mybatis:
+  typeAliasesPackage: com.zp.dao.mapper
+  mapperLocations: classpath:mapper/**/*Mapper.xml
 
 spring:
-  kafka:
-    bootstrap-servers: 127.0.0.1:9092 #服务器的ip及端口，可以写多个，服务器之间用“：”间隔
-    producer: #生产者配置
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
-    consumer: #消费者配置
-      group-id: test #设置消费者的组id
-      enable-auto-commit: false
-#      auto-commit-interval: 1000
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  aop:
+    proxy-target-class: true
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/hodor?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: 123456
+    validationQuery: SELECT 1
+    connectionInitSqls: SET NAMES utf8mb4
+    driverClassName: com.mysql.jdbc.Driver
+  #  kafka:
+  #    bootstrap-servers: 127.0.0.1:9092 #服务器的ip及端口，可以写多个，服务器之间用“：”间隔
+  #    producer: #生产者配置
+  #      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+  #      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+  #    consumer: #消费者配置
+  #      group-id: test #设置消费者的组id
+  #      enable-auto-commit: false
+  #      #      auto-commit-interval: 1000
+  #      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  #      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
   redis:
-    #    host: 192.168.2.110 #哨兵模式下不用配置
-    #    port: 6379 # 哨兵模式下不用配置
-    password: admin
+    host: 127.0.0.1 #哨兵模式下不用配置
+    port: 6379 # 哨兵模式下不用配置
+    password: 320123dy
+    timeout: 43200000
+    block-when-exhausted: true
     jedis:
       pool:
-        #最大连接数
-        max-active: 1024
-        #最大阻塞等待时间(负数表示没限制)
-        max-wait: 20000
-        #最大空闲
-        max-idle: 200
-        #最小空闲
-        min-idle: 10
-    sentinel:
-      master: mymaster
-      nodes: 127.0.0.1:26380,127.0.0.1:26381
+        max-idle: 500
+        min-idle: 50
+        max-active: 2000
+        max-wait: 1000
+
 
 
