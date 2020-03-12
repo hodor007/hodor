@@ -43,6 +43,11 @@ public class RedisDz {
 
     private Set<Integer> aBDiff = new HashSet<>();
 
+    /**
+     * redis对账
+     * redis操作示意图 https://www.processon.com/diagraming/5e661ba2e4b0fbd1b087ba87
+     * string内存大小 40+2n字节 40万数据存入redis30兆
+     */
     public void redisDz() {
         Jedis jedis = jedisPool.getResource();
         // 分别读取A、B表 存入redis
@@ -64,12 +69,12 @@ public class RedisDz {
         fcDsBizOrderDetails.clear();
 
         long sdiffAStart = System.currentTimeMillis();
-        Set<String> sdiffA = jedis.sdiff("A", "B");
+        Set<String> sdiffA = jedis.sdiff("A", "B"); // A多余B的，以及A和B不同的
         long sdiffAEnd = System.currentTimeMillis();
         System.out.println("sdiffA === " + (sdiffAEnd - sdiffAStart));
 
         long sdiffBStart = System.currentTimeMillis();
-        Set<String> sdiffB = jedis.sdiff("B", "A");
+        Set<String> sdiffB = jedis.sdiff("B", "A");// B多余A的，以及和B不同的
         long sdiffBEnd = System.currentTimeMillis();
         System.out.println("sdiffB === " + (sdiffBEnd - sdiffBStart));
 
@@ -88,6 +93,7 @@ public class RedisDz {
             return;
         }
 
+        // 拿A,B的不同 再取交集 和 不同
         jedis.sadd("sdiffA", sdiffA.stream().map(s -> s.split(",")[0]).collect(Collectors.toSet()).toArray(new String[]{}));
         jedis.sadd("sdiffB", sdiffB.stream().map(s -> s.split(",")[0]).collect(Collectors.toSet()).toArray(new String[]{}));
         Set<String> sdiffAA = jedis.sdiff("sdiffA", "sdiffB");
