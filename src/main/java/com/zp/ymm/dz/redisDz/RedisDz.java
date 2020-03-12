@@ -1,16 +1,12 @@
 package com.zp.ymm.dz.redisDz;
 
-import com.zp.dao.entity.FcDsBizOrder;
-import com.zp.dao.entity.FcDsBizOrderDetail;
 import com.zp.dao.mapper.FcDsBizOrderDetailMapper;
 import com.zp.dao.mapper.FcDsBizOrderMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -71,7 +67,7 @@ public class RedisDz {
         long sdiffAStart = System.currentTimeMillis();
         Set<String> sdiffA = jedis.sdiff("A", "B"); // A多余B的，以及A和B不同的
         long sdiffAEnd = System.currentTimeMillis();
-        System.out.println("sdiffA === " + (sdiffAEnd - sdiffAStart));
+        System.out.println("sdiffA === " + (sdiffAEnd - sdiffAStart));   // 1m不到
 
         long sdiffBStart = System.currentTimeMillis();
         Set<String> sdiffB = jedis.sdiff("B", "A");// B多余A的，以及和B不同的
