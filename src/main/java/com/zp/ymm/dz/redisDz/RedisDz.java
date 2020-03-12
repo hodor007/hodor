@@ -67,7 +67,7 @@ public class RedisDz {
         long sdiffAStart = System.currentTimeMillis();
         Set<String> sdiffA = jedis.sdiff("A", "B"); // A多余B的，以及A和B不同的
         long sdiffAEnd = System.currentTimeMillis();
-        System.out.println("sdiffA === " + (sdiffAEnd - sdiffAStart));   // 1m不到
+        System.out.println("sdiffA === " + (sdiffAEnd - sdiffAStart));   // 20万数据比较1秒不到
 
         long sdiffBStart = System.currentTimeMillis();
         Set<String> sdiffB = jedis.sdiff("B", "A");// B多余A的，以及和B不同的
