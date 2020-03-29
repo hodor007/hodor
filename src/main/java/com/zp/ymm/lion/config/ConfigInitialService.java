@@ -2,6 +2,6 @@ package com.zp.ymm.lion.config;
 
 public interface ConfigInitialService {
 
-    void init();
+    ConfigInitial initConfig(Class t);
 
 }
