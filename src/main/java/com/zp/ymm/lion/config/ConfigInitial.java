@@ -106,8 +106,9 @@ public class ConfigInitial implements ConfigInitialService {
                 f.set(null, Byte.valueOf(value));
             } else if (fieldType == char.class || fieldType == Character.class) {
                 f.set(null, value.charAt(0));
+            } else {
+                f.set(null, value);
             }
-            f.set(null, value);
             SetConfigValueMethod method = methodMap.get(key);
             if (method != null) {
                 method.setConfigValueMethod();

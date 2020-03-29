@@ -8,13 +8,14 @@ public class ConstantTestAnnotion {
     private static final String HODOR_NAME_KEY = "HODOR_NAME";
 
     @ConfigKey(HODOR_NAME_KEY)
-    private static String HODOR_NAME_VALUE;
+    public static String HODOR_NAME_VALUE;
 
-    private static int HODOR;
+    public static int HODOR;
 
     static {
-        ConfigInitial.getInstance().initConfig(ConstantTestAnnotion.class)
-                .setMethod(HODOR_NAME_KEY, ConstantTestAnnotion::setHodor);
+        ConfigInitial.getInstance()
+                .setMethod(HODOR_NAME_KEY, ConstantTestAnnotion::setHodor)
+                .initConfig(ConstantTestAnnotion.class);
     }
 
     public static void setHodor() {
