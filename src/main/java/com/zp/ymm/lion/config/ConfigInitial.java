@@ -11,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.List;
 import java.util.Map;
@@ -69,7 +70,7 @@ public class ConfigInitial implements ConfigInitialService {
             if (f.isAnnotationPresent(ConfigKey.class)) {
                 String key = f.getAnnotation(ConfigKey.class).value();
                 value = getLionValue(key, f);
-                setAttrValue(f, key, value);
+                setAttrValue(t,f, key, value);
             }
         }
 
@@ -81,13 +82,13 @@ public class ConfigInitial implements ConfigInitialService {
             for (Field f : fields) {
                 ConfigKey configKey = f.getAnnotation(ConfigKey.class);
                 if (configKey != null && configKey.value().equals(key)) {
-                    setAttrValue(f, key, value);
+                    setAttrValue(t, f, key, value);
                 }
             }
         }));
     }
 
-    private void setAttrValue(Field f, String key, String value) {
+    private void setAttrValue(Class t, Field f, String key, String value) {
         if (StringUtils.isEmpty(value)) {
             LOGGER.warn("配置项" + f.getName() + "未配置");
             return;
@@ -129,10 +130,16 @@ public class ConfigInitial implements ConfigInitialService {
                 }
             }
             f.set(null, val);
-            SetConfigValueMethod method = methodMap.get(key);
-            if (method != null) {
-                method.setConfigValueMethod();
+            String method = f.getAnnotation(ConfigKey.class).methodName();
+            if (StringUtils.isNotEmpty(method)) {
+              Method m = t.getDeclaredMethod(method);
+              m.setAccessible(true);
+              m.invoke(null);
             }
+//            SetConfigValueMethod method = methodMap.get(key);
+//            if (method != null) {
+//                method.setConfigValueMethod();
+//            }
         } catch (Exception e) {
             LOGGER.warn("lion配置赋值异常", e);
         }

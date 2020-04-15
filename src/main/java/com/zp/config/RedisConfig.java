@@ -39,8 +39,8 @@ public class RedisConfig {
 
     @Bean
     public JedisPool redisPoolFactory() throws Exception {
-        log.info("JedisPool注入成功！！");
-        log.info("redis地址：" + host + ":" + port);
+//        log.info("JedisPool注入成功！！");
+//        log.info("redis地址：" + host + ":" + port);
         JedisPoolConfig jedisPoolConfig = new JedisPoolConfig();
         jedisPoolConfig.setMaxIdle(maxIdle);
         jedisPoolConfig.setMaxWaitMillis(maxWaitMillis);

@@ -16,4 +16,6 @@ public @interface ConfigKey {
     String value() default "";
 
     boolean json() default false;
+
+    String methodName() default "";
 }

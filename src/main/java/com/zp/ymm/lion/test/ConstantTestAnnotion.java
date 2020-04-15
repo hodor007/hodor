@@ -7,19 +7,20 @@ public class ConstantTestAnnotion {
 
     private static final String HODOR_NAME_KEY = "HODOR_NAME";
 
-    @ConfigKey(HODOR_NAME_KEY)
+    @ConfigKey(value = HODOR_NAME_KEY, methodName = "setHodor")
     public static String HODOR_NAME_VALUE;
 
     public static int HODOR;
 
     static {
         // 初始化也可以利用注解的方式，在类上加个注解 方正静态方法 还是可以类.属性的形式引用
+        // 也可以不用setMethod的方式，通过注解传递method的名字，然后利用反射区执行方法
         ConfigInitial.getInstance()
-                .setMethod(HODOR_NAME_KEY, ConstantTestAnnotion::setHodor)
+//                .setMethod(HODOR_NAME_KEY, ConstantTestAnnotion::setHodor)
                 .initConfig(ConstantTestAnnotion.class);
     }
 
-    public static void setHodor() {
+    private static void setHodor() {
         HODOR = HODOR_NAME_VALUE.length();
     }
 
