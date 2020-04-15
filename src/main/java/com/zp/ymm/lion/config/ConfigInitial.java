@@ -1,14 +1,18 @@
 package com.zp.ymm.lion.config;
 
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import com.zp.ymm.lion.ConfigCache;
+import com.zp.ymm.lion.resolver.FieldValueResolver;
+import com.zp.ymm.lion.resolver.IntegerResolver;
+import com.zp.ymm.lion.resolver.StringResolver;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,6 +33,8 @@ public class ConfigInitial implements ConfigInitialService {
 
     private Map<String, SetConfigValueMethod> methodMap = Maps.newHashMap();
 
+    private static List<FieldValueResolver> valueResolver;
+
     public static ConfigInitial getInstance() {
         if (configInitial == null) {
             synchronized (ConfigInitial.class) {
@@ -38,6 +44,12 @@ public class ConfigInitial implements ConfigInitialService {
             }
         }
         return configInitial;
+    }
+
+    static {
+        valueResolver = Lists.newArrayList();
+        valueResolver.add(new StringResolver());
+        valueResolver.add(new IntegerResolver());
     }
 
     @Override
@@ -83,37 +95,45 @@ public class ConfigInitial implements ConfigInitialService {
         if (!Modifier.isStatic(f.getModifiers())) {
             return;
         }
-        Class<?> fieldType = f.getType();
+//        Class<?> fieldType = f.getType();
         try {
             f.setAccessible(true);
-            if (fieldType == String.class) {
-                f.set(null, value);
-            } else if (fieldType == int.class || fieldType == Integer.class) {
-                f.set(null, Integer.valueOf(value));
-            } else if (fieldType == long.class || fieldType == Long.class) {
-                f.set(null, Long.valueOf(value));
-            } else if (fieldType == boolean.class || fieldType == Boolean.class) {
-                f.set(null, Boolean.valueOf(value));
-            } else if (fieldType == double.class || fieldType == Double.class) {
-                f.set(null, Double.valueOf(value));
-            } else if (fieldType == Date.class) {
-                f.set(null, convertToDate(f, value));
-            } else if (fieldType == short.class || fieldType == Short.class) {
-                f.set(null, Short.valueOf(value));
-            } else if (fieldType == float.class || fieldType == Float.class) {
-                f.set(null, Float.valueOf(value));
-            } else if (fieldType == byte.class || fieldType == Byte.class) {
-                f.set(null, Byte.valueOf(value));
-            } else if (fieldType == char.class || fieldType == Character.class) {
-                f.set(null, value.charAt(0));
-            } else {
-                f.set(null, value);
+//            if (fieldType == String.class) {
+//                f.set(null, value);
+//            } else if (fieldType == int.class || fieldType == Integer.class) {
+//                f.set(null, Integer.valueOf(value));
+//            } else if (fieldType == long.class || fieldType == Long.class) {
+//                f.set(null, Long.valueOf(value));
+//            } else if (fieldType == boolean.class || fieldType == Boolean.class) {
+//                f.set(null, Boolean.valueOf(value));
+//            } else if (fieldType == double.class || fieldType == Double.class) {
+//                f.set(null, Double.valueOf(value));
+//            } else if (fieldType == Date.class) {
+//                f.set(null, convertToDate(f, value));
+//            } else if (fieldType == short.class || fieldType == Short.class) {
+//                f.set(null, Short.valueOf(value));
+//            } else if (fieldType == float.class || fieldType == Float.class) {
+//                f.set(null, Float.valueOf(value));
+//            } else if (fieldType == byte.class || fieldType == Byte.class) {
+//                f.set(null, Byte.valueOf(value));
+//            } else if (fieldType == char.class || fieldType == Character.class) {
+//                f.set(null, value.charAt(0));
+//            } else {
+//                f.set(null, value);
+//            }
+            Object val = null;
+            for (FieldValueResolver fieldValueResolver : valueResolver) {
+                if (fieldValueResolver.support(f)) {
+                    val = fieldValueResolver.resolve(value, f);
+                    break;
+                }
             }
+            f.set(null, val);
             SetConfigValueMethod method = methodMap.get(key);
             if (method != null) {
                 method.setConfigValueMethod();
             }
-        } catch (IllegalAccessException e) {
+        } catch (Exception e) {
             LOGGER.warn("lion配置赋值异常", e);
         }
     }
@@ -130,6 +150,10 @@ public class ConfigInitial implements ConfigInitialService {
     public ConfigInitial setMethod(String key, SetConfigValueMethod method) {
         methodMap.put(key, method);
         return getInstance();
+    }
+
+    public void setValueResolver(FieldValueResolver fieldValueResolver) {
+        valueResolver.add(fieldValueResolver);
     }
 
 

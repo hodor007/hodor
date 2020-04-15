@@ -13,6 +13,7 @@ public class ConstantTestAnnotion {
     public static int HODOR;
 
     static {
+        // 初始化也可以利用注解的方式，在类上加个注解 方正静态方法 还是可以类.属性的形式引用
         ConfigInitial.getInstance()
                 .setMethod(HODOR_NAME_KEY, ConstantTestAnnotion::setHodor)
                 .initConfig(ConstantTestAnnotion.class);
