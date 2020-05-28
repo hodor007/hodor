@@ -35,7 +35,7 @@ spring:
   redis:
     host: 127.0.0.1 #哨兵模式下不用配置
     port: 6379 # 哨兵模式下不用配置
-    password: 320123dy
+    password: 123456
     timeout: 43200000
     block-when-exhausted: true
     jedis:
