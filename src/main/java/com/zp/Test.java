@@ -8,7 +8,26 @@ package com.zp;
 public class Test {
 
     public static void main(String[] args) {
-        System.out.println(1 << 2);
+//        System.out.println(1 << 2);
+        B b = new B();
+        System.out.println(b.getAge());
+    }
+
+    public static class A {
+        private int age = 1;
+
+        public int getAge() {
+            return age;
+        }
+
+    }
+
+    public static class B extends A {
+        private int age = 2;
+
+        public int getAge() {
+            return age;
+        }
     }
 
 }
