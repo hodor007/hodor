@@ -1,6 +1,6 @@
 # You can change the default http port
 server:
-  port: 8080
+  port: 8081
   contextPath: /hodor   # 配置后bootRun，访问时要http://localhost:8080/dist
 
 zkHosts: 127.0.0.1:2181
@@ -45,5 +45,10 @@ spring:
         max-active: 2000
         max-wait: 1000
 
+
+rocketmq:
+  nameServer: 127.0.0.1:9876
+  producer:
+    group: demo-producer-group
 
 
