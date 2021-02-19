@@ -91,4 +91,9 @@ dependencies {
     compile group: 'org.elasticsearch', name: 'elasticsearch', version: '7.6.2'
     compile group: 'com.alibaba', name: 'transmittable-thread-local', version: '2.11.4'
     compile 'com.squareup:javapoet:1.8.0'
+    // https://mvnrepository.com/artifact/com.googlecode.aviator/aviator
+    compile group: 'com.googlecode.aviator', name: 'aviator', version: '4.2.0'
+    // https://mvnrepository.com/artifact/org.codehaus.groovy/groovy
+    compile group: 'org.codehaus.groovy', name: 'groovy', version: '3.0.7'
+
 }
