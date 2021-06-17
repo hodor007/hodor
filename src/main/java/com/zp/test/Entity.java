@@ -15,6 +15,21 @@ public class Entity {
     // 属性值
     private String name;
 
+    private String value;
+
+    public String getValue() {
+        return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
+    }
+
+    public Entity(String name, String value) {
+        this.name = name;
+        this.value = value;
+    }
+
     public Entity(String name) {
         this.name = name;
     }
