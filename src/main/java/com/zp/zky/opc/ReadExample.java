@@ -2,9 +2,11 @@ package com.zp.zky.opc;
 
 import lombok.extern.slf4j.Slf4j;
 import org.eclipse.milo.opcua.sdk.client.OpcUaClient;
+import org.eclipse.milo.opcua.sdk.client.api.nodes.Node;
 import org.eclipse.milo.opcua.sdk.client.api.subscriptions.UaMonitoredItem;
 import org.eclipse.milo.opcua.sdk.client.api.subscriptions.UaSubscription;
 import org.eclipse.milo.opcua.stack.core.AttributeId;
+import org.eclipse.milo.opcua.stack.core.Identifiers;
 import org.eclipse.milo.opcua.stack.core.types.builtin.DataValue;
 import org.eclipse.milo.opcua.stack.core.types.builtin.NodeId;
 import org.eclipse.milo.opcua.stack.core.types.builtin.StatusCode;
@@ -17,6 +19,7 @@ import org.eclipse.milo.opcua.stack.core.types.structured.ReadValueId;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import static org.eclipse.milo.opcua.stack.core.types.builtin.unsigned.Unsigned.uint;
 
@@ -33,7 +36,7 @@ public class ReadExample implements Runner {
     public void Run(OpcUaClient opcUaClient) throws Exception {
         opcUaClient.connect().get();
 //        NodeId nodeId = new NodeId(2, "模拟器示例.函数.Ramp8");
-        NodeId nodeId = new NodeId(2, "通道 2.设备 1.tem");
+        NodeId nodeId = new NodeId(2, "通道 1.设备 1._System");
 //        createSubscription(opcUaClient, nodeId);
         getValue(opcUaClient, nodeId);
 //        Thread.sleep(1000);
@@ -41,6 +44,16 @@ public class ReadExample implements Runner {
 //        Thread.sleep(1000);
 //        writeData(opcUaClient, nodeId, 2.0);
 //        Thread.sleep(10000);
+        List<Node> nodes = opcUaClient.getAddressSpace().browse(nodeId).get();
+        nodes.forEach(node -> {
+            try {
+                System.out.println(node.getNodeId().get().getIdentifier());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     private void writeData(OpcUaClient opcUaClient, NodeId nodeId, double data) throws InterruptedException, java.util.concurrent.ExecutionException {
