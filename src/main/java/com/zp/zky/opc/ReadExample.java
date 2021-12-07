@@ -68,7 +68,7 @@ public class ReadExample implements Runner {
 
         DataValue value = opcUaClient.readValue(0.0, TimestampsToReturn.Both, nodeId).get();
 
-        System.out.println((Double) value.getValue().getValue());
+        System.out.println("读取到的值为" + (Double) value.getValue().getValue());
     }
 
     private void createSubscription(OpcUaClient client, NodeId nodeId) throws InterruptedException, java.util.concurrent.ExecutionException {
