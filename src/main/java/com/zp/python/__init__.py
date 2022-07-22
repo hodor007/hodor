@@ -1,7 +1,11 @@
 import decimal
 import copy
+
 # https://fishc.com.cn/forum.php?mod=forumdisplay&fid=360&filter=typeid&typeid=769
+# from com.zp.python.classTest import Turtle
+
 if __name__ == '__main__':
+    pass
     # 正常的浮点型有精度问题
     # a = decimal.Decimal('0.1')
     # b = decimal.Decimal('0.2')
@@ -28,24 +32,24 @@ if __name__ == '__main__':
     # small = b
 
     # 当循环条件不再为真的时候，else语句才会被执行 break虽然跳出但是还是为真
-#     i = 1
-# while i<5:
-#     print("循环内，i的值是",i)
-#     if i == 2:
-#         break
-#     i += 1
-# else:
-#     print("循环外，i的值是",i)
+    #     i = 1
+    # while i<5:
+    #     print("循环内，i的值是",i)
+    #     if i == 2:
+    #         break
+    #     i += 1
+    # else:
+    #     print("循环外，i的值是",i)
 
-# 99乘法表
-# i = 1
-# while i<=9:
-#     j=1
-#     while j<=i:
-#         print(j,"*",i,"=",j * i,end =" ")
-#         j += 1
-#     print()
-#     i += 1
+    # 99乘法表
+    # i = 1
+    # while i<=9:
+    #     j=1
+    #     while j<=i:
+    #         print(j,"*",i,"=",j * i,end =" ")
+    #         j += 1
+    #     print()
+    #     i += 1
 
     # for
     # for each in "FishC":
@@ -146,20 +150,53 @@ if __name__ == '__main__':
     # def myfunc(a,b,c,d):
     #     print(a,b,c,d)
     # myfunc(*args)  # 元祖加*解包成参数
-    #通常我们无法在嵌套函数的内部修改外部函数变量的值，除非使用 nonlocal 语句破除限制：
+    # 通常我们无法在嵌套函数的内部修改外部函数变量的值，除非使用 nonlocal 语句破除限制：
 
     # 闭包  所谓闭包（closure），也有人称之为工厂函数（factory function）  这里 power() 函数就像是一个工厂，由于参数不同，得到了两个不同的 “生产线”，一个是 square()，一个是 cube()，前者是返回参数的平方，后者是返回参数的立方。
-#      def power(exp):
-#          def exp_of(base):
-#             return base ** exp
-#          return exp_of  # 函数作为返回值
-#
-#      square = power(2) # 函数作为变量
-#      cube = power(3)
-#     square
-# <function power.<locals>.exp_of at 0x000001CF6A1FAF70>
-# >>> square(2)
-#
-# >>> cube(2)
-# 8
+    #      def power(exp):
+    #          def exp_of(base):
+    #             return base ** exp
+    #          return exp_of  # 函数作为返回值
+    #
+    #      square = power(2) # 函数作为变量
+    #      cube = power(3)
+    #     square
+    # <function power.<locals>.exp_of at 0x000001CF6A1FAF70>
+    # >>> square(2)
+    #
+    # >>> cube(2)
+    # 8
     # 函数作为入参
+
+    # 生成器 每次遇到 yield 时函数会暂停并保存当前所有的运行信息，返回 yield 的值,
+    # def fib(): #生成器实现斐波拉切数列
+    #     back1, back2 = 0, 1
+    #     while True:
+    #         yield back1
+    #         back1, back2 = back2, back1 + back2
+
+    # 对象
+    # t1 = Turtle()
+    # t1.crawl()
+    # t1.mouth = 3
+    # print(dir(t1))
+    # c = Turtle(1)
+
+    # # 异常
+    # class BusinessException(Exception):
+    #     pass
+    # try:
+    #     1 / 0
+    #     520 + "abc"
+    # # except:
+    # #     print("出错啦")
+    # except (ZeroDivisionError, ValueError) as e:
+    #     print(e)
+    #     raise BusinessException("手动抛出异常")
+    # except TypeError:
+    #     pass
+    # finally:  # 是否异常都执行
+    #     print("没得四")
+
+    # assert
+
