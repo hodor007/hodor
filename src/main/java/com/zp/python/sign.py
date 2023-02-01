@@ -7,6 +7,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from io import BytesIO
 from PIL import Image
+from com.zp.python.weixin.main import weixin
 
 s = Service("D:\install\chromedriver_win32\chromedriver.exe")
 options = Options()
@@ -41,8 +42,13 @@ def sign_vpn():
 
 if __name__ == '__main__':
     pass
+    weixinObject = weixin()
     for index in range(5):
         result = sign_vpn()
         if result:
+            weixinObject.send_message("8IU3opj47Wgplxyo60MN3DIYrOLKiM9zv_9Bbnc_454", "签到成功")
             break
+        if index == 4:
+            weixinObject.send_message("8IU3opj47Wgplxyo60MN3DIYrOLKiM9zv_9Bbnc_454", "签到失败")
+
     driver.close()
